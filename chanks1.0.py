@@ -50,30 +50,37 @@ def chankFunction(timeIn, a):
     print("Chanks:", ex[2])
     ch3 = ex[2]
     print()
+
     print("-"*20, "\n")
     chanks = [ch1, ch2, ch3]
     return chanks
 
-def autoDayChank():
+def inputTime(textTime):
     print()
-    a = int(input("current time: "))
+    a = int(input(textTime + ": "))
     print()
     return a
 
-mode = input("d - day, h - hours\nMode: ")
+mode = input("d - day, h - hours of work, l - limit\nMode: ")
 
-print("до 4 часов ночи:", "\n")
+startHour = 14
+endHour = 24 + 3
 
 if mode == "d":
-    a = autoDayChank()
-    x = chankFunction(28, a)
+    print("до", endHour % 24, "часов ночи:", "\n")
+    startHour = inputTime("current time")
+    x = chankFunction(endHour, startHour)
 elif mode == "h":
-    startHour = 14
-    x = chankFunction(28, startHour)
+    print("до 4 часов ночи:", "\n")
+    x = chankFunction(endHour, startHour)
     b = int(input("hours: "))
     for i in x:
         xx = ceil(b/ (i/2))
         print("days of work:", xx, " chanks for day:", i)
+elif mode == "l":
+    startHour = inputTime("current time")
+    endHour = inputTime("end time")
+    x = chankFunction(endHour, startHour)
 
 
 # print("до 2 часов ночи:", "\n")
