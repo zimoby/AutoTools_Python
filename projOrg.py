@@ -1,5 +1,6 @@
 import sys
 import os
+# from pathlib import Path
 
 def createFolder(newPath):
     if not os.path.exists(newPath):
@@ -9,13 +10,15 @@ def createFolder(newPath):
 def parseFolders(arr, path, iter):
     for y in range(iter, len(arr)):
         if isinstance(arr[y], list):
-            parentFolder = path + "\\" + arr[y][0]
+            parentFolder = os.path.join(path, arr[y][0])
             print("New folder: " + parentFolder)
+            # print(parentFolder)
             createFolder(parentFolder)
             parseFolders(arr[y], parentFolder, 1)
         else:
-            subFolder = path + "\\" + arr[y]
+            subFolder = os.path.join(path, arr[y])
             print("New folder: " + subFolder)
+            # print(parentFolder)
             createFolder(subFolder)
 
 argumentsNum = len(sys.argv)
@@ -26,7 +29,10 @@ if argumentsNum == 3:
     if sys.argv[1]:
         type = sys.argv[1]
     if sys.argv[2]:
-        path = os.path.normpath(sys.argv[2][0:-1])
+        if os.path.normpath(sys.argv[2][-1]) == "/" or os.path.normpath(sys.argv[2][-1]) == "\\":
+            path = os.path.normpath(sys.argv[2][0:-1])
+        else:
+            path = os.path.normpath(sys.argv[2])
     else:
         path = ""
 
