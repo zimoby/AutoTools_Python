@@ -29,12 +29,20 @@ def parseFolders(arr, path, iter):
 argumentsNum = len(sys.argv)
 foldersType = ""
 
+# print(os.path.normpath(sys.argv[2][0:-1]))
+
 if argumentsNum == 3:
     if sys.argv[1]:
         foldersType = sys.argv[1]
     if sys.argv[2]:
         lastPathChar = os.path.normpath(sys.argv[2][-1])
-        if lastPathChar == "/" or lastPathChar == "\\":
+        # print("    ", lastPathChar)
+        # if lastPathChar == "\"" or lastPathChar == "\'":
+        #     lastCharNum = -2
+        # elif lastPathChar == "/" or lastPathChar == "\\":
+        #     lastCharNum = -1
+
+        if lastPathChar == "/" or lastPathChar == "\\" or lastPathChar == "\"" or lastPathChar == "\'":
             path = os.path.normpath(sys.argv[2][0:-1])
         else:
             path = os.path.normpath(sys.argv[2])
