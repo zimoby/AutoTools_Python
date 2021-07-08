@@ -25,13 +25,6 @@ folders_Array = {
         ["06_Animation", "AE Projects", "Cinema4D Projects", "Proxy", "Export"],
         ["07_Sound_Design", "01_SFX", "02_Master"],
         "08_Share"
-    ],
-    "montage": [
-        ["_Assets", "_Screencast"],
-        "_Export",
-        "_GFX",
-        "_Projects",
-        "_Sound"
     ]
 }
 
