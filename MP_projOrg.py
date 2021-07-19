@@ -28,21 +28,21 @@ folders_Array = {
     ]
 }
 
-def createFolder(newPath):
+def Create_Folder(newPath):
     if not os.path.exists(newPath):
         os.mkdir(newPath)
 
-def parseFolders(arr, path, iter):
-    for y in range(iter, len(arr)):
+def Parse_Folders(arr, path, start_From):
+    for y in range(start_From, len(arr)):
         if isinstance(arr[y], list):
             parentFolder = os.path.join(path, arr[y][0])
             print("New folder: " + parentFolder)
-            createFolder(parentFolder)
-            parseFolders(arr[y], parentFolder, 1)
+            Create_Folder(parentFolder)
+            Parse_Folders(arr[y], parentFolder, 1)
         else:
             subFolder = os.path.join(path, arr[y])
             print("New folder: " + subFolder)
-            createFolder(subFolder)
+            Create_Folder(subFolder)
 
 arguments_Number = len(sys.argv)
 folders_Type = ""
@@ -63,8 +63,8 @@ if arguments_Number == 3:
 
 # Type Checker
 for type in folders_Array:
-    if folders_Type == type:
-        foldersStructure = folders_Array[type]
+    if folders_Type.lower() == type:
+        Folders_Structure = folders_Array[type]
         type_Finder = True
         break
 
@@ -73,6 +73,6 @@ if type_Finder == False:
     print("Type not found")
 else:
     if path != "":
-        parseFolders(foldersStructure, path, 0)
+        Parse_Folders(Folders_Structure, path, 0)
     else:
         print("Path not found")
